@@ -1,0 +1,47 @@
+<?xml version="1.0"?>
+<odoo>
+    <record id="purchase_order_stock_picking" model="ir.ui.view">
+        <field name="name">purchase_order_form_all_shipment</field>
+        <field name="model">purchase.order</field>
+        <field name="inherit_id" ref="purchase.purchase_order_form"/>
+        <field name="arch" type="xml">
+            <sheet>
+                <xpath expr="//sheet/div[@name='button_box']" position="inside">
+                    <button type ="object"
+                            name = "view_all_picking"
+                            class = "oe_stat_button"
+                            icon = "fa-truck"
+                            attrs="{'invisible': [('all_shipment_count', '=', 0)]}">
+                        <field name="all_shipment_count" widget="statinfo" string="All Shipments"
+                               help="All Shipments, including chained"/>
+                        <field name="all_picking_ids" invisible="1"/>
+                    </button>
+                </xpath>
+            </sheet>
+        </field>
+    </record>
+</odoo>
+<!--<odoo>-->
+    <!--<record id="purchase_order_stock_picking" model="ir.ui.view">-->
+      <!--<field name="name">purchase_order_form</field>-->
+      <!--<field name="model">purchase.order</field>-->
+      <!--<field name="inherit_id" ref="purchase.purchase_order_form"/>-->
+      <!--<field name="arch" type="xml">-->
+          <!--<sheet>-->
+              <!--<button name="picking_count" position="after">-->
+                  <!--<button type="object"-->
+                          <!--name="view_all_picking"-->
+                          <!--class="oe_stat_button"-->
+                          <!--icon="fa-truck"-->
+                          <!--attrs="{'invisible': [('all_shipment_count', '=', 0)]}">-->
+                        <!--<field name="all_shipment_count" widget="statinfo" string="All Shipments" help="All Shipments, including chained"/>-->
+                  <!--</button>-->
+                  <!--&lt;!&ndash; xpath needed because of odoo/odoo#5247 &ndash;&gt;-->
+                  <!--<xpath expr="//div[@name='buttons']/button[@name='view_picking']" position="attributes">-->
+                      <!--<attribute name="invisible">1</attribute>-->
+                  <!--</xpath>-->
+              <!--</button>-->
+          <!--</sheet>-->
+      <!--</field>-->
+    <!--</record>-->
+<!--</odoo>-->
